@@ -11,6 +11,7 @@ class Bank
   end
 
   def withdraw(amount)
+    fail "Withdrawal must not exceed current balance." if (@balance - amount) < 0
     @balance -= amount
   end
 
