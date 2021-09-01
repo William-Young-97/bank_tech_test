@@ -22,4 +22,21 @@ describe Bank do
       expect{subject.withdraw(20)}.to raise_error("Withdrawal must not exceed current balance.")
     end 
   end
+
+  describe '#show_statement' do
+    it 'Returns the date, credit, debit and balance' do
+      current_time = Time.new
+      allow(Time).to receive(:now).and_return(current_time)
+      subject.deposit(20)
+      expect{ subject.show }.to output("Date || Credit || Debit || Balance\n#{current_time} || 20 || || 20").to_stdout
+    end
+  end
 end
+
+describe Time do
+    it 'Logs the date' do
+       current_time = Time.new
+       allow(Time).to receive(:now).and_return(current_time)
+       expect(Time.now).to eq(current_time)
+   end
+ end
