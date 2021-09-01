@@ -1,5 +1,3 @@
-require 'time'
-
 class Bank
   
   INITIAL_BALANCE = 0
@@ -11,19 +9,20 @@ class Bank
  
   def deposit(amount)
     @balance += amount
-    @entries << {"Date" => Time.now, "Credit" => amount, "Debit" => nil, "Balance" => @balance}
+    @entries << [Time.now, amount, nil, @balance] 
     @balance
   end
 
   def withdraw(amount)
     fail "Withdrawal must not exceed current balance." if (@balance - amount) < 0
     @balance -= amount
-    @entries << {"Date" => Time.now, "Credit" => nil, "Debit" => amount, "Balance" => @balance}
+    @entries << [Time.now, nil, amount, @balance]
     @balance
   end
   
   def show 
-    @entries.each { |row| row.each {|item| p item}}
+    p "Date || Credit || Debit || Balance"
+    p @entries.join(" || ")
   end
 
 end
