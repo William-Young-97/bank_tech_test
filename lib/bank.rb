@@ -1,3 +1,5 @@
+require 'time'
+
 class Bank
   
   INITIAL_BALANCE = 0
@@ -14,5 +16,5 @@ class Bank
     fail "Withdrawal must not exceed current balance." if (@balance - amount) < 0
     @balance -= amount
   end
-
+  
 end
