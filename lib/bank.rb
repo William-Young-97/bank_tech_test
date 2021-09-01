@@ -1,7 +1,9 @@
 class Bank
-
+  
+  INITIAL_BALANCE = 0
+  
   def initialize
-    @balance = 0
+    @balance = INITIAL_BALANCE
   end
  
   def deposit(amount)
