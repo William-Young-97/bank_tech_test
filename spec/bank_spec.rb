@@ -28,7 +28,8 @@ describe Bank do
       current_time = Time.new
       allow(Time).to receive(:now).and_return(current_time)
       subject.deposit(20)
-      expect{ subject.show }.to output("Date || Credit || Debit || Balance\n#{current_time} || 20 || || 20").to_stdout
+      expect{ subject.show }.to output("\"Date || Credit || Debit || Balance\"\n\"02/09/21 || 20 ||  || 20\"\n"
+      ).to_stdout
     end
   end
 end

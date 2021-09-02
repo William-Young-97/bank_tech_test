@@ -4,29 +4,27 @@ class Bank
   
   def initialize
     @balance = INITIAL_BALANCE
-    @entries = [] 
+    @entries = [["Date || Credit || Debit || Balance"]] 
   end
  
   def deposit(amount)
     @balance += amount
-    @entries << [Time.now, amount, nil, @balance] 
+    @entries << [Time.now.strftime("%d/%m/%y"), amount, nil, @balance] 
     @balance
   end
 
   def withdraw(amount)
     fail "Withdrawal must not exceed current balance." if (@balance - amount) < 0
     @balance -= amount
-    @entries << [Time.now, nil, amount, @balance]
+    @entries << [Time.now.strftime("%d/%m/%y"), nil, amount, @balance]
     @balance
   end
   
   def show 
-    p "Date || Credit || Debit || Balance"
-    p @entries.join(" || ")
+    i = 0
+      while i < @entries.length
+        p @entries[-i].join(" || ") 
+        i += 1
+      end
   end
-
 end
-
-# When a new withdrawal or deposit is made a hash is formed.
-# The hash key is date and the values are credit, debit and balance.
-# This can then be iterated over each row on show
