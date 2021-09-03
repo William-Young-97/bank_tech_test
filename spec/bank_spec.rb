@@ -1,4 +1,6 @@
 require './lib/bank'
+require 'timecop'
+
 
 describe Bank do
   describe '#deposit()' do
@@ -24,13 +26,20 @@ describe Bank do
   end
 
   describe '#show_statement' do
+    before do
+        Timecop.freeze(Time.local(2021,9,2))
+      end
     it 'Returns the date, credit, debit and balance' do
+       
       current_time = Time.new
       allow(Time).to receive(:now).and_return(current_time)
       subject.deposit(20)
       expect{ subject.show }.to output("\"Date || Credit || Debit || Balance\"\n\"02/09/21 || 20 ||  || 20\"\n"
       ).to_stdout
     end
+    after do
+        Timecop.return
+      end
   end
 end
 

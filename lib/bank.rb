@@ -14,17 +14,21 @@ class Bank
   end
 
   def withdraw(amount)
-    fail "Withdrawal must not exceed current balance." if (@balance - amount) < 0
+    guard(amount)
     @balance -= amount
     @entries << [Time.now.strftime("%d/%m/%y"), nil, amount, @balance]
     @balance
   end
   
   def show 
-    i = 0
-      while i < @entries.length
-        p @entries[-i].join(" || ") 
-        i += 1
-      end
+    counter = 0
+    while counter < @entries.length
+      p @entries[-counter].join(" || ") 
+      counter += 1
+    end
+  end
+
+  def guard(amount)
+    fail "Withdrawal must not exceed current balance." if (@balance - amount) < INITIAL_BALANCE
   end
 end
