@@ -19,7 +19,7 @@ class Bank
     @entries << [Time.now.strftime("%d/%m/%y"), nil, amount, @balance]
     @balance
   end
-  
+
   def show 
     counter = 0
     while counter < @entries.length
