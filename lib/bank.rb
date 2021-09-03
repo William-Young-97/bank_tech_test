@@ -21,10 +21,10 @@ class Bank
   end
 
   def show 
-    counter = 0
-    while counter < @entries.length
-      p @entries[-counter].join(" || ") 
-      counter += 1
+    index = 0
+    while index < @entries.length
+      p @entries[-index].join(" || ") 
+      index += 1
     end
   end
 
